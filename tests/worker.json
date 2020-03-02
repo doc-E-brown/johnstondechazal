@@ -1,0 +1,19 @@
+{
+    "Title": "Facial Landmarking (~15-20mins) + BONUS",
+    "Description": "Identify specified points on a face",
+    "CreationTime": "2018-05-30 21:48:18+10:00",
+    "WorkerId": "A304PUXIRA930J",
+    "AssignmentId": "30LB5CDZNDS3L9T6YXOB293Z4DXZ06",
+    "AssignmentStatus": "Submitted",
+    "AcceptTime": "2018-05-30 22:49:18+10:00",
+    "Answers": [
+        {
+            "QuestionIdentifier": "activity_log",
+            "FreeText": "msg"
+        },
+        {
+            "QuestionIdentifier": "results",
+            "FreeText": "{\"replicates\":3,\"currentSample\":16,\"samples\":[{\"filename\":\"/test_data/indoor_006.png\",\"width\":1024,\"height\":768,\"landmarks\":[{\"id\":\"P13\",\"x\":849.8,\"y\":432.2,\"distLim\":94.4,\"user_x\":848,\"user_y\":411,\"select_time\":1527685139496},{\"id\":\"P63\",\"x\":600,\"y\":483.3,\"distLim\":36.88034706995042,\"user_x\":601,\"user_y\":464,\"select_time\":1527684802733}]},{\"filename\":\"/test_data/aflw__face_41556.jpg\",\"width\":1024,\"height\":768,\"landmarks\":[{\"id\":\"P13\",\"x\":849.8,\"y\":432.2,\"distLim\":94.4,\"user_x\":964,\"user_y\":511,\"select_time\":1527685139496},{\"id\":\"P63\",\"x\":600,\"y\":483.3,\"distLim\":36.88034706995042,\"user_x\":631,\"user_y\":264,\"select_time\":1527684802733}],\"currentLandmark\":21,\"validLandmarks\":true}]}"
+        }
+    ]
+}

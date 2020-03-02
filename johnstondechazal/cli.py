@@ -2,14 +2,13 @@
 import sys
 import click
 
+from johnstondechazal.data import download_data, PKG_DIR
 
 @click.command()
-def main(args=None):
+@click.argument('dest', default=PKG_DIR)
+def main(dest):
     """Console script for johnstondechazal."""
-    click.echo("Replace this message by putting your code into "
-               "johnstondechazal.cli.main")
-    click.echo("See click documentation at https://click.palletsprojects.com/")
-    return 0
+    download_data(dest)
 
 
 if __name__ == "__main__":

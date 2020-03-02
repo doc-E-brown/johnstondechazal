@@ -6,7 +6,7 @@ import pytest
 
 from click.testing import CliRunner
 
-from johnstondechazal import johnstondechazal
+# from johnstondechazal import johnstondechazal
 from johnstondechazal import cli
 
 

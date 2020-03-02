@@ -1,0 +1,62 @@
+{
+    "results": {
+        "replicates": 3,
+        "currentSample": 16,
+        "samples": [
+            {
+                "filename": "/test_data/indoor_006.png",
+                "width": 1024,
+                "height": 768,
+                "landmarks": [
+                    {
+                        "id": "P13",
+                        "x": 849.8,
+                        "y": 432.2,
+                        "distLim": 94.4,
+                        "user_x": 856,
+                        "user_y": 375,
+                        "select_time": 1540268034835
+                    },
+                    {
+                        "id": "P61",
+                        "x": 849.8,
+                        "y": 432.2,
+                        "distLim": 94.4,
+                        "user_x": 456,
+                        "user_y": 274,
+                        "select_time": 1540268034835
+                    }
+                ],
+                "currentLandmark": 21,
+                "validLandmarks": true
+            },
+            {
+                "filename": "/test_data/aflw__face_41556.jpg",
+                "width": 1203,
+                "height": 1018,
+                "landmarks": [
+                    {
+                        "id": "P61",
+                        "x": 471.2,
+                        "y": 719.6,
+                        "distLim": 33.28423050034355,
+                        "user_x": 488,
+                        "user_y": 726,
+                        "select_time": 1540268134792
+                    },
+                    {
+                        "id": "P13",
+                        "x": 849.8,
+                        "y": 432.2,
+                        "distLim": 94.4,
+                        "user_x": 956,
+                        "user_y": 475,
+                        "select_time": 1540268034835
+                    }
+                ],
+                "currentLandmark": 21,
+                "validLandmarks": true
+            }
+        ]
+    }
+}
