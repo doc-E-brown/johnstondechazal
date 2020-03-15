@@ -49,7 +49,8 @@ setup(
     test_suite='tests',
     tests_require=test_requirements,
     url='https://github.com/docEbrown/johnstondechazal',
-    version=versioneer.get_version(),
+#    version=versioneer.get_version(),
+    version='0.0.0',
     cmdclass=versioneer.get_cmdclass(),
     zip_safe=False,
 )
