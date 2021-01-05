@@ -8,14 +8,15 @@ Test data module
 __author__ = 'Ben Johnston'
 
 import os
+from tempfile import mkdtemp
 
 import numpy as np
 import pandas as pd
 import pytest
 
 from johnstondechazal.data import (_json_to_landmarks, dataframe_to_numpy,
-                                   json_landmarks_to_dataframe,
-                                   load_all_landmarks)
+                                   download_data, json_landmarks_to_dataframe,
+                                   load_all_landmarks, load_image)
 
 TEST_DIR = os.path.abspath(os.path.dirname(__file__))
 
@@ -28,6 +29,15 @@ def expert_landmarks():
 @pytest.fixture
 def worker_landmarks():
     return os.path.join(TEST_DIR, 'worker.json')
+
+
+def test_download_data():
+    """Test downloading data"""
+
+    tmpdir = mkdtemp()
+    download_data(tmpdir)
+
+    assert os.listdir(tmpdir) == ['facial-landmarks-master']
 
 
 def test_get_lmrks_json():
@@ -182,3 +192,17 @@ def test_load_all_landmarks():
                     pass
 
             assert len(cols) == 22
+
+
+def test_load_select_landmarks():
+    """Test select landmarks"""
+
+    df = load_all_landmarks('i001qa-mn.jpg')
+    assert len(df) == 448
+
+
+def test_load_image():
+    """Test load image"""
+
+    img = load_image('i001qa-mn.jpg')
+    assert img.shape == (640, 480, 3)

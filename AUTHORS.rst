@@ -5,7 +5,7 @@ Credits
 Development Lead
 ----------------
 
-* Ben Johnston <docEbrown_github@protonmail.com>
+* Ben Johnston <ben.johnston@sydney.edu.au>
 
 Contributors
 ------------

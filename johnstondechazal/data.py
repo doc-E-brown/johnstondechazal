@@ -17,11 +17,13 @@ from zipfile import ZipFile
 
 import numpy as np
 import pandas as pd
+from imageio import imread
 
 LANDMARK_REPO = 'https://github.com/doc-E-brown/facial-landmarks/archive/master.zip'
 
 PKG_DIR = os.path.abspath(os.path.dirname(__file__))
 LANDMARK_DIR = os.path.join(PKG_DIR, 'facial-landmarks-master')
+IMAGE_DIR = os.path.join(LANDMARK_DIR, 'images')
 
 
 def download_data(extract_path: str = PKG_DIR) -> None:
@@ -93,9 +95,9 @@ def load_all_landmarks(image: Union[str, None] = None,
     :param image: return landmarks for the selected image,
         defaults to `None` for all images.
     :type image: Union[str, None]
-    :param dirpath: root path of all landmarks 
+    :param dirpath: root path of all landmarks
     :type dirpath: str
-    :return: landmarks for all workers, images and replicates 
+    :return: landmarks for all workers, images and replicates
     :rtype: pd.DataFrame
     """
 
@@ -174,38 +176,15 @@ def dataframe_to_numpy(df: pd.DataFrame) -> Tuple[np.ndarray, pd.DataFrame]:
     return array, df_meta
 
 
-# def remove_duplicates(dirpath: str = LANDMARK_DIR):
-#     """Remove duplicate workers"""
+def load_image(image: str, image_dir: str = IMAGE_DIR) -> np.ndarray:
+    """Load image
+    
+    :param image: [description]
+    :type image: str
+    :param image_dir: [description], defaults to IMAGE_DIR
+    :type image_dir: str, optional
+    :return: [description]
+    :rtype: np.ndarray
+    """
 
-#     file_workers = {}
-#     for root, dirname, filenames in os.walk(dirpath):
-
-#         for fname in filenames:
-
-#             if '.json' not in fname or '_' not in fname:
-#                 continue
-
-#             tstamp, worker = fname.split('_')
-
-#             if worker not in file_workers:
-#                 file_workers[worker] = []
-
-#             file_workers[worker].append(
-#                 datetime.strptime(tstamp, '%Y-%m-%d-%H:%M:%S'))
-
-#     # Remove singulars
-#     for worker in list(file_workers.keys()):
-
-#         if len(file_workers[worker]) < 2:
-#             del file_workers[worker]
-#         else:
-#             file_workers[worker].sort()
-
-#             _file = file_workers[worker][0].strftime('%Y-%m-%d-%H:%M:%S')
-#             _file += f'_{worker}'
-#             print(_file)
-#             os.remove(os.path.join(dirpath, 'landmarks', 'workers', _file))
-
-if __name__ == "__main__":
-    df = load_all_landmarks('indoor_052.png')
-    arr, df_meta = dataframe_to_numpy(df)
+    return imread(os.path.join(image_dir, image))

@@ -1,6 +1,9 @@
 # Facial landmarks data
 johnstondechazal/facial-landmarks-master/*
 
+# Generated images
+landmark_selection/*
+
 # VSCode
 .vscode
 
