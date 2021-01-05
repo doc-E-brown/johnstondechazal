@@ -79,7 +79,6 @@ class FindGrouthTruth:
 
         # Iterate for one less than number of annotators
         while 1:
-            # for idx in tqdm(range(_range)):
             mean, precision = converge_mean(landmarks)
             landmarks, (inc, exc) = select_landmarks(precision, landmarks,
                                                      select_func)

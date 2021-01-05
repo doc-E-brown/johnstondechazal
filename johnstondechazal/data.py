@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 
-.. currentmodule:: 
+.. currentmodule::
 
 """
 __author__ = 'Ben Johnston'
@@ -11,7 +11,7 @@ import json
 import os
 import tempfile
 import urllib.request
-from datetime import datetime
+from glob import glob
 from typing import Tuple, Union
 from zipfile import ZipFile
 
@@ -19,11 +19,13 @@ import numpy as np
 import pandas as pd
 from imageio import imread
 
-LANDMARK_REPO = 'https://github.com/doc-E-brown/facial-landmarks/archive/master.zip'
+LANDMARK_REPO = 'https://github.com/doc-E-brown/'\
+    'facial-landmarks/archive/master.zip'
 
 PKG_DIR = os.path.abspath(os.path.dirname(__file__))
 LANDMARK_DIR = os.path.join(PKG_DIR, 'facial-landmarks-master')
 IMAGE_DIR = os.path.join(LANDMARK_DIR, 'images')
+IMAGE_FILES = [os.path.basename(x) for x in glob(f'{IMAGE_DIR}/*.*')]
 
 
 def download_data(extract_path: str = PKG_DIR) -> None:
@@ -91,7 +93,7 @@ def json_landmarks_to_dataframe(filepath: str) -> Tuple[str, pd.DataFrame]:
 def load_all_landmarks(image: Union[str, None] = None,
                        dirpath: str = LANDMARK_DIR) -> pd.DataFrame:
     """Load all the landmarks into a dataframe
-    
+
     :param image: return landmarks for the selected image,
         defaults to `None` for all images.
     :type image: Union[str, None]
@@ -130,7 +132,7 @@ def load_all_landmarks(image: Union[str, None] = None,
 
 def dataframe_to_numpy(df: pd.DataFrame) -> Tuple[np.ndarray, pd.DataFrame]:
     """Return numpy array of coordinates from a selection dataframe
-    
+
     :param df: Input dataframe from test results
     :type df: pd.DataFrame
     :return: Selected coordinates and the metadata for the corrdinates
@@ -140,9 +142,6 @@ def dataframe_to_numpy(df: pd.DataFrame) -> Tuple[np.ndarray, pd.DataFrame]:
     # sort the columns
     cols = [x for x in df.columns if isinstance(x, int)]
     cols.sort()
-
-    # get the metadata colums
-    cols_meta = [x for x in df.columns if isinstance(x, str)]
 
     # Generate array
     array = []
@@ -178,7 +177,7 @@ def dataframe_to_numpy(df: pd.DataFrame) -> Tuple[np.ndarray, pd.DataFrame]:
 
 def load_image(image: str, image_dir: str = IMAGE_DIR) -> np.ndarray:
     """Load image
-    
+
     :param image: [description]
     :type image: str
     :param image_dir: [description], defaults to IMAGE_DIR
