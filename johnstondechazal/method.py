@@ -47,25 +47,6 @@ def find_worst_sum(precision: np.ndarray) -> Tuple[Tuple[int], Tuple[int]]:
     return tuple([tuple(indices), tuple([worst_annot])])
 
 
-def drop_worst_half(precision: np.ndarray) -> Tuple[Tuple[int], Tuple[int]]:
-    """Drop the botton 50% of annotators by summing the precision values for the
-    both the x and y directions and eliminating the annotators with the lowest
-    precision score
-
-    :param precision: The annotator precision values
-    :type precision: np.ndarray
-    :return: The annotators included and the annotators to exclude from the
-        sample
-    :rtype: Tuple[Tuple[int], Tuple[int]]
-    """
-
-    precision_sum = precision.sum(axis=1)
-    indices = precision_sum.argsort().tolist()[::-1]
-    half = len(indices) // 2
-
-    return tuple([tuple(indices[:half]), tuple(indices[half:])])
-
-
 def select_landmarks(
     precision: np.ndarray,
     landmarks: np.ndarray,

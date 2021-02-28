@@ -15,6 +15,8 @@ from scipy.spatial.distance import euclidean
 
 from johnstondechazal.groundtruth import FindGrouthTruth
 
+np.random.seed(0)
+
 
 @patch('johnstondechazal.groundtruth.download_data')
 def test_download_data(download_patch):

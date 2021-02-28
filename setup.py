@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 """The setup script."""
 
-import versioneer
 from setuptools import find_packages, setup
+
+import versioneer
 
 with open('README.rst') as readme_file:
     readme = readme_file.read()
@@ -45,7 +46,7 @@ setup(
     "A method of optimising facial landmark selection from crowd sourced labels.",
     entry_points={
         'console_scripts': [
-            'johnstondechazal=johnstondechazal.cli:main',
+            'jdc=johnstondechazal.cli:main',
         ],
     },
     install_requires=requirements,

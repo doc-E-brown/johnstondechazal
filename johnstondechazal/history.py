@@ -21,7 +21,7 @@ class History:
         :type meta: pd.DataFrame
         """
         self.records = {
-            'mean': [],
+            'loc': [],
             'included': [],
             'landmarks': [],
         }
@@ -40,7 +40,7 @@ class History:
         :param include: The indices included in the selection
         :type include: Union[List, None]
         """
-        self.records['mean'].append(mean)
+        self.records['loc'].append(mean)
         self.records['landmarks'].append(landmarks)
 
         # Extract the record to be removed
@@ -52,9 +52,9 @@ class History:
     def __iter__(self) -> Tuple[np.ndarray, np.ndarray, pd.DataFrame]:
         """
         """
-        for idx in range(len(self.records['mean'])):
+        for idx in range(len(self.records['loc'])):
             yield (
-                self.records['mean'][idx],
+                self.records['loc'][idx],
                 self.records['landmarks'][idx],
                 self.records['included'][idx],
             )
@@ -68,14 +68,23 @@ class History:
         :rtype: Tuple[np.ndarray, pd.DataFrame, pd.DataFrame]
         """
         return (
-            self.records['mean'][key],
+            self.records['loc'][key],
             self.records['landmarks'][key],
             self.records['included'][key],
         )
 
-    def __repr__(self) -> str:  # pragma : no cover
-        _mean = self.records['mean'][-1]
+    def __repr__(self) -> str:  # pragma: no cover
+        _mean = self.records['loc'][-1]
         return f"({_mean[0]:4.2f},{_mean[1]:4.2f})@{len(self.records['mean'])}"
 
     def __len__(self) -> int:  # pragma: no cover
-        return len(self.records['mean'])
+        return len(self.records['loc'])
+
+    @property
+    def loc(self) -> np.ndarray:
+        """Get the final location
+
+        Returns:
+            np.ndarray: The final location
+        """
+        return self.records['loc'][-1]

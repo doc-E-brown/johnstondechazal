@@ -2,15 +2,14 @@
 # -*- coding: utf-8 -*-
 """
 
-.. currentmodule:: johnstondechazal.visualise 
+.. currentmodule:: johnstondechazal.visualise
 
 """
 __author__ = 'Ben Johnston'
 
 from typing import Tuple
 
-import matplotlib
-import matplotlib.pyplot as plt
+import matplotlib.axes
 
 from johnstondechazal.history import History
 
@@ -18,10 +17,9 @@ from johnstondechazal.history import History
 def plot_history(hist: History,
                  ax: matplotlib.axes.Axes,
                  c: Tuple[str, str] = ['b', 'r'],
-                 marker='o',
-                 s=3):  # pragma: no cover
+                 marker='o'):  # pragma: no cover
     """Plot landmark history
-    
+
     :param hist: [description]
     :type hist: History
     :param figure: [description]
@@ -31,20 +29,32 @@ def plot_history(hist: History,
     """
 
     num_samples = len(hist)
+    points = []
 
     # Plot means
     for idx, (mean, *_) in enumerate(hist):
 
         if (idx + 1) == num_samples:
-            # ax.scatter(mean[0], mean[1], s=s, marker='x')
-            ax.scatter(mean[0], mean[1], c=c[1], marker=marker)
+            points.append(
+                ax.scatter(mean[0],
+                           mean[1],
+                           c=c[1],
+                           marker=marker,
+                           label='Final Location'))
 
         elif idx == 0:
-            # ax.scatter(mean[0], mean[1], s=s, marker='o')
-            ax.scatter(mean[0], mean[1], c=c[0], marker=marker)
+            points.append(
+                ax.scatter(mean[0],
+                           mean[1],
+                           c=c[0],
+                           marker=marker,
+                           label='Global Mean'))
 
         if idx > 0:
-            ax.plot([prev_mean[0], mean[0]], [prev_mean[1], mean[1]],
-                    c=c[0],
-                    linestyle='--')
+            points.append(
+                ax.plot([prev_mean[0], mean[0]], [prev_mean[1], mean[1]],
+                        c=c[0],
+                        linestyle='--'))
         prev_mean = mean
+
+    return points

@@ -39,6 +39,8 @@ def test_history():
     for idx in range(3):
         hist.add(expected_means[idx], landmark_lists[idx], include_lists[idx])
 
+    assert np.all(hist.loc == expected_means[-1])
+
     for idx, (mean, landmarks, included) in enumerate(hist):
 
         np.testing.assert_equal(mean, expected_means[idx])
